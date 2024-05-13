@@ -1,0 +1,80 @@
+
+
+<section id="principal">
+    <section id="presentacion">
+        <div class="presentacion-container">
+            <h1 class="title-principal">Generador de paleta de colores</h1>
+            <h2 class="title-secundario">colores principales, paleta monocromo y paletas aleatorias</h2>
+        </div>
+    </section>
+    
+    <section id="menu">
+        <div class="menu-container">
+            <div class="colores-palete">
+                <div class="button-menu">
+                    <button mat-stroked-button (click)="openColorPalette()">Paleta De Colores</button>
+                </div>
+                <!-- modal de paleta -->
+                <div class="modal" [ngClass]="{'open': isModalOpen}">
+                    <div class="modal-content">
+                        <span class="close" (click)="closeColorPalette()">&times;</span>
+                        <div class="color"
+                            *ngFor="let color of colors"
+                            [style.background-color]="color" 
+                            (click)="selectorColor(color)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-menu"> 
+                <button mat-stroked-button (click)="selectorRandomColor()">Color Aleatorio</button>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="paleta">
+        <div class="colores-container">
+            <!-- aca se deben cargar el color selecionado de la paleta -->
+            <div class="div-color-principal"
+                [style.background-color]="colorPorDefecto"
+                (mouseover)="showCopyTooltip(colorSelecionado)"
+                (mouseleave)="hideCopyTooltip()"
+                (click)="copyColor(colorSelecionado)"
+                [title]="colorSelecionado"
+                #divColoresPrincipales>{{colorSelecionado}}</div>
+            <!-- se debe hacer una paleta monocromo del color selecionado -->
+            <h3 class="monocromo-title">Paleta Monocromo</h3>
+            <div class="paleta-monocromo">
+                <div class="colores-monocromo"
+                    *ngFor="let shade of monochromaticPalette"
+                    [style.background-color]="shade"
+                    (mouseover)="showCopyTooltip(shade)"
+                    (mouseleave)="hideCopyTooltip()"
+                    (click)="copyColor(shade)"
+                    [title]="shade" >
+                    {{shade}}</div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="paleta-aleatoria">
+        <div class="paleta-aleatoria-container">
+            <h3 class="aleatoria-title">Paleta Aleatoria</h3>
+            <div class="button-aleatorio">
+                <button mat-stroked-button (click)="generarRandomPaleta()">Generar</button>
+            </div>
+            <div class="paleta-aleatoria">
+                <div class="color-aleatorio"
+                    *ngFor="let color of randomPaleta"
+                    [style.background-color]="color"
+                    (mouseover)="showCopyTooltip(color)"
+                    (mouseleave)="hideCopyTooltip()"
+                    (click)="copyColor(color)"
+                    [title]="color" ><span>{{color}}</span></div>
+            </div>
+        </div> 
+    </section>
+</section>
+

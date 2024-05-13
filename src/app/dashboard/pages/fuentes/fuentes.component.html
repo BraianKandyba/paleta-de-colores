@@ -1,0 +1,81 @@
+<div class="modal" [ngClass]="{'open': isModalOpen}">
+    <div class="modal-content">
+        <span class="close" (click)="closeColorPalette()">&times;</span>
+        <div class="color"
+            *ngFor="let color of colors"
+            [style.background-color]="color"
+            (click)="selectorColorfondo(color)" 
+            >
+        </div>
+    </div>
+</div>
+
+<div class="modal" [ngClass]="{'open': isModalOpenText}">
+    <div class="modal-content">
+        <span class="close" (click)="closeTextPalette()">&times;</span>
+        <div class="color"
+            *ngFor="let color of colors"
+            [style.background-color]="color"
+            (click)="selectorColorTexto(color)" 
+            >
+        </div>
+    </div>
+</div>
+
+<div class="modal" [ngClass]="{'open': mostrarCodigoModal}">
+    
+    <div class="modal-content-codigo">
+        <span class="close" (click)="cerrarCodigoModal()">&times;</span>
+        <p class="pre-css">{{codigoCSS}}</p>
+        <button mat-stroked-button  (click)="copyCss(codigoCSS)">copiar</button>
+    </div>
+</div>
+
+
+<section id="principal">
+
+    <section id="presentacion">
+        <div class="presentacion-container">
+            <h1 class="title-principal">Fuentes</h1>
+            <h2 class="title-secundario">Estiliza Tus Textos y Fondos</h2>
+        </div>
+    </section>
+    
+    <section id="menu">
+        <div class="container-menu">
+            <div class="buttons-menu" >
+                <button  mat-stroked-button  (click)="openColorPalette()">Text background</button>
+                <button  mat-stroked-button (click)="openTextPalette()">Text color</button>
+                <button  mat-stroked-button class="font-button" >
+                    
+                        <mat-select appendToBody class="fontSelect" [(ngModel)]="fontSeleccionada" (change)="seleccionarFuente()">    
+                            <mat-option *ngFor="let font of fontOptions" [value]="font">{{ font }}</mat-option>
+                        </mat-select>
+                    
+
+                </button>
+                <button mat-stroked-button (click)="abrirCodigoModal()">Mostrar Código</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="text-color">
+        <div class="text-background-container">
+            <div *ngFor="let divData of generateDivs()"
+            [style.backgroundColor]="divData.color"
+            [style.color]="divData.textColor"
+            [style.fontFamily]="divData.font"
+            class="text-item">
+                <p>{{ divData.text }}</p>
+            </div>
+        </div>
+
+    </section>
+
+    <div>
+        
+    </div>
+
+
+
+</section>

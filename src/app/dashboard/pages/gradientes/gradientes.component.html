@@ -1,0 +1,76 @@
+
+<div class="modal" [ngClass]="{ 'is-open': isModalOpen }">
+    <div class="modal-content">
+        <h2>Codigo CSS</h2>
+        <span class="close" (click)="closeModal()">&times;</span>
+        <pre>{{ gradientCode }}</pre>
+        <button (click)="copygradient(gradientCode)">copiar</button>
+    </div>
+</div>
+
+<section id="principal">
+
+    <section id="presentacion">
+        <div class="presentacion-container">
+            <h1 class="title-principal">Gradientes</h1>
+            <h2 class="title-secundario">Genera gradietes aletorios o genera los tuyos</h2>
+        </div>
+    </section>
+
+    <section id="gradientes">
+        <div class="gradient-container">
+            <div class="grid-container">
+                <div class="grid-item" *ngFor="let gradient of gradients">
+                    <div
+                        class="gradient-box"
+                        (click)="openModal(gradient)"
+                        [ngStyle]="{ 'background': 'linear-gradient(to right, ' + gradient.startColor + ', ' + gradient.endColor + ')' }">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gradient-aleatorios">
+        <div class="gradient-aleatorios-container">
+            <h3>Gradientes Aletorios</h3>
+            <button mat-stroked-button (click)="generateGradients()">Generar</button>
+
+            <div class="grid-container-random">
+                <div class="grid-item" *ngFor="let gradient of gradientAleatorio">
+                    <div
+                        class="gradient-box"
+                        (click)="openModal(gradient)"
+                        [ngStyle]="{ 'background': 'linear-gradient(to right, ' + gradient.startColor + ', ' + gradient.endColor + ')' }">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <section id="form">
+        <div class="form-container">
+            <div class="form" [formGroup]="gradientForm" >
+                <h3>Ingresa los colores</h3>
+                <input type="text" formControlName="startColor" placeholder="ej: #a8ff78" >
+                <input type="text" formControlName="endColor" placeholder="ej: #78ffd6" >
+                <button (click)="userGradient()">Generar Gradiente</button>
+            </div>
+        </div>
+
+        <div class="grid-iten-container">
+            <div class="grid-item">
+                <div
+                    *ngIf="gradientGenerado"
+                    class="gradient-box"
+                    (click)="openModal(gradientGenerado)"
+                    [ngStyle]="{ 'background': 'linear-gradient(to right, ' + gradientGenerado.startColor + ', ' + gradientGenerado.endColor + ')' }">
+                </div>
+        </div>
+
+        </div>
+
+        
+    </section>
+
+</section>

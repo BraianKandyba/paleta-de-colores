@@ -1,0 +1,66 @@
+$color-primario: #294773;
+.dashboard-container{
+    height: 100vh;
+    background-color: #e3ecec;
+}
+
+*{
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.toolbar{
+    background-color:$color-primario;
+    border-bottom: 10px solid #007bff;
+    .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    span{
+        font-size: 1.5rem;
+    }
+}
+
+.icono-toolbar{
+    height: 40px;
+    width: 40px;
+}
+
+.menu-principal{
+    margin-top: 5px;
+    margin-left: 20%;
+    margin-right: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color:$color-primario;
+    border-radius: 15px;
+
+    .lista{
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 15px;
+        font-size: 20px;
+
+        .lista-iten{
+            width: auto;
+            font-size: 20px;
+            &active{
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+footer{
+    border-top: 10px solid #007bff;
+    margin-top: 30px;
+    background-color:$color-primario;
+}
